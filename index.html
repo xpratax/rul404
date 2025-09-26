@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>REGRA 404</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #000;
+      color: #fff;
+      overflow: hidden;
+    }
+    .neon-text {
+      font-size: 3rem;
+      font-weight: bold;
+      text-align: center;
+      color: #00ff00;
+      text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 15px #00ff00;
+    }
+    .subtitle {
+      font-size: 1.5rem;
+      text-align: center;
+      margin-top: 20px;
+    }
+    .age-verification {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 50px;
+    }
+    .age-verification label {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+    .age-verification input {
+      padding: 10px;
+      font-size: 1rem;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 5px;
+      width: 200px;
+    }
+    .age-verification button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      background-color: #00ff00;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .age-verification button:hover {
+      background-color: #00cc00;
+    }
+    .blocked-message {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      color: #ff0000;
+      font-size: 2rem;
+      text-align: center;
+      padding: 20px;
+      z-index: 10;
+    }
+    .access-button {
+      display: none;
+      margin-top: 30px;
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      background-color: #00ff00;
+      color: #000;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .access-button:hover {
+      background-color: #00cc00;
+    }
+  </style>
+</head>
+<body>
+  <div class="blocked-message" id="blockedMessage">
+    <p>Acesso bloqueado</p>
+    <p>+18 acessa o conteúdo</p>
+  </div>
+
+  <div class="content">
+    <div class="neon-text">REGRA 404</div>
+    <div class="subtitle">quem ignora buraco e prefeitura</div>
+
+    <div class="age-verification" id="ageVerification">
+      <label for="dob">Selecione sua data de nascimento:</label>
+      <input type="date" id="dob" name="dob" max="2007-12-31">
+      <button onclick="verifyAge()">Confirmar idade</button>
+    </div>
+
+    <button class="access-button" id="accessButton" onclick="goToLink()">Acessar conteúdo</button>
+  </div>
+
+  <script>
+    function verifyAge() {
+      const dob = document.getElementById('dob').value;
+      if (!dob) return alert('Selecione sua data de nascimento!');
+      
+      const birthDate = new Date(dob);
+      const today = new Date();
+      let age = today.getFullYear() - birthDate.getFullYear();
+      const m = today.getMonth() - birthDate.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+      }
+
+      if (age >= 18) {
+        // Maior de idade
+        document.getElementById('ageVerification').style.display = 'none';
+        document.getElementById('accessButton').style.display = 'inline-block';
+      } else {
+        // Menor de idade - fecha a página
+        window.close();
+        alert('Acesso negado: você é menor de idade!');
+      }
+    }
+
+    function goToLink() {
+      window.location.href = "https://xpratax.github.io/rule404/";
+    }
+  </script>
+</body>
+</html>
