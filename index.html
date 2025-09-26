@@ -46,7 +46,7 @@
       margin-bottom: 20px;
       border: none;
       border-radius: 5px;
-      width: 200px;
+      width: 220px;
     }
     .age-verification button {
       padding: 10px 20px;
@@ -106,7 +106,7 @@
 
     <div class="age-verification" id="ageVerification">
       <label for="dob">Selecione sua data de nascimento:</label>
-      <input type="date" id="dob" name="dob" max="2007-12-31">
+      <input type="date" id="dob" name="dob" min="1900-01-01" max="2025-12-31">
       <button onclick="verifyAge()">Confirmar idade</button>
     </div>
 
@@ -143,3 +143,4 @@
   </script>
 </body>
 </html>
+
